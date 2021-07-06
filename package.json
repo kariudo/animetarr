@@ -7,7 +7,7 @@
     "start": "./node_modules/.bin/tsc && node dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Hunter Horsman",
   "license": "ISC",
   "dependencies": {
     "dotenv-safe": "^8.2.0",

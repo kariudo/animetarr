@@ -13,6 +13,7 @@ export class SeriesData {
   airdate?: Date;
   posterUrl = "";
   aliases: string[] = [];
+  tags: string[] = [];
 
   constructor(params: Partial<SeriesData>) {
     Object.assign(this, params);

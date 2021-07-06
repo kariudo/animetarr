@@ -24,28 +24,27 @@ export async function matchSeriesTitle(
   year?: number,
   season?: Season
 ): Promise<SeriesData> {
-  return tvdb
-    .getSeriesByName(title)
-    .then((results: TVDBSeries[]) => {
-      const series = results[0];
-      const seriesData: SeriesData = new SeriesData({
-        tvdbId: series.id,
-        title: series.seriesName,
-        queryYear: year,
-        airdate: new Date(series.firstAired),
-        description: series.overview,
-        imageUrl: `https://www.thetvdb.com${series.image}`,
-        posterUrl: `https://www.thetvdb.com${series.poster}`,
-        aliases: series.aliases,
-        season: season,
-        matchedQuery: title,
-        originalTitle: originalTitle ?? title,
-        status: series.status,
-      });
-
-      return seriesData;
-    })
-    .catch(() => retryWithShorterName(title, originalTitle));
+  try {
+    const results = await tvdb.getSeriesByName(title);
+    const series: TVDBSeries = results[0];
+    const seriesData: SeriesData = new SeriesData({
+      tvdbId: series.id,
+      title: series.seriesName,
+      queryYear: year,
+      airdate: new Date(series.firstAired),
+      description: series.overview,
+      imageUrl: `https://www.thetvdb.com${series.image}`,
+      posterUrl: `https://www.thetvdb.com${series.poster}`, // these seem to be the same...
+      aliases: series.aliases,
+      season: season,
+      matchedQuery: title,
+      originalTitle: originalTitle ?? title,
+      status: series.status,
+    });
+    return seriesData;
+  } catch (err) {
+    return retryWithShorterName(title, originalTitle, year, season);
+  }
 }
 
 /**
@@ -57,14 +56,25 @@ export async function matchSeriesTitle(
  */
 async function retryWithShorterName(
   title: string,
-  originalTitle?: string
+  originalTitle?: string,
+  year?: number,
+  season?: Season
 ): Promise<SeriesData> {
   const shortenedTitle = removeLastWord(title);
   if (shortenedTitle) {
-    return matchSeriesTitle(shortenedTitle, originalTitle ?? title);
+    return matchSeriesTitle(
+      shortenedTitle,
+      originalTitle ?? title,
+      year,
+      season
+    );
   } else {
     throw new Error("Name cannot be shortened.");
   }
+}
+
+export async function getSeries(tvdbId: number): Promise<TVDBSeries> {
+  return tvdb.getSeriesById(tvdbId);
 }
 
 /**

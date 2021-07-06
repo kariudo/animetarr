@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #1b4f54;
+}
+
+.mat-toolbar {
+  background-color: #072225;
+}
+
+.mat-card {
+  background-color: #032b2f;
+}
