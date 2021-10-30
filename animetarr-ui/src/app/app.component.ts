@@ -41,6 +41,10 @@ export class AppComponent implements OnInit {
       });
   }
 
+  showCompleteDescription(show: SeriesData): void {
+    window.alert(show.description);
+  }
+
   showVideo(show: SeriesData): void {
     window.open(
       `https://www.youtube.com/results?search_query=${show.title

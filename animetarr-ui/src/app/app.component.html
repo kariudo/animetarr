@@ -39,7 +39,13 @@
                   <strong>{{show.season|titlecase}} {{show.queryYear}}</strong> - <em>{{show.status}}</em>
                 </div>
               </div>
-              <div class="description">{{show.description}}</div>
+              <div class="description">
+                <span>{{show.description | truncate:300:true}}
+                  <mat-icon class="more-description-icon" *ngIf="show.description.length > 300"
+                    (click)="showCompleteDescription(show)" [inline]=true>
+                    description</mat-icon>
+                </span>
+              </div>
               <div class="chips">
                 <mat-chip-list>
                   <mat-chip *ngFor="let tag of show.tags" color="accent" selected>{{tag}}</mat-chip>

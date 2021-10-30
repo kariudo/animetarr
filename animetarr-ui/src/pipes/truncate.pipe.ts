@@ -10,9 +10,10 @@ export class TruncatePipe implements PipeTransform {
     completeWords = false,
     ellipsis = '...'
   ): string {
-    if (completeWords) {
+    const shouldTruncate = value.length > limit;
+    if (shouldTruncate && completeWords) {
       limit = value.substr(0, limit).lastIndexOf(' ');
     }
-    return value.length > limit ? value.substr(0, limit) + ellipsis : value;
+    return shouldTruncate ? value.substr(0, limit) + ellipsis : value;
   }
 }
