@@ -5,7 +5,7 @@
 
 
   <form #f="ngForm">
-    <select name="selectedYear" [(ngModel)]="selectedYear">
+    <select name="selectedYear" [(ngModel)]="selectedYear" (change)="loadSchedule()">
       <option [value]="year" *ngFor="let year of [2021,2020,2019,2018]">{{ year }}
       </option>
     </select>
@@ -15,9 +15,9 @@
     </select>
   </form>
 
-  <button mat-icon-button (click)="loadSchedule()">
+  <!-- <button mat-icon-button (click)="loadSchedule()">
     <mat-icon>refresh</mat-icon>
-  </button>
+  </button> -->
 </mat-toolbar>
 <div class="scrollable-content">
   <div *ngIf="!isLoading" class="content">
