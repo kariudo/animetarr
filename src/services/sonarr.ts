@@ -66,6 +66,7 @@ export async function PostSeries(tvdbId: number): Promise<SonarrSeries> {
       rootFolderPath: process.env.SONARR_BASE_PATH,
       seasonFolder: true,
       monitored: true,
+      seriesType: "anime",
       addOptions: {
         searchForMissingEpisodes: true,
       },
