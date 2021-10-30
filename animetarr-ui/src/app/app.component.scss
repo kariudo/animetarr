@@ -78,6 +78,11 @@ mat-card-actions {
   justify-content: space-between;
 }
 
+.scrollable-content {
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+}
+
 select {
   background: #ffffff22;
   color: white;

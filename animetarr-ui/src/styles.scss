@@ -3,6 +3,13 @@
 html,
 body {
   height: 100%;
+  background: linear-gradient(
+    320deg,
+    #0d2b2e 0%,
+    rgb(9, 87, 88) 60%,
+    rgb(30, 168, 127) 100%
+  );
+  overflow: hidden;
 }
 body {
   margin: 0;
