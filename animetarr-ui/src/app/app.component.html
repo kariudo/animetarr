@@ -64,7 +64,8 @@
                 <mat-icon>warning</mat-icon>
               </button>
             </span>
-            <button mat-mini-fab color="primary" (click)="addToSonarr(show)" [disabled]="alreadyExists(show)">
+            <button mat-mini-fab color="primary" (click)="addToSonarr(show)"
+              [disabled]="show._isLoading || alreadyExists(show)">
               <mat-icon>{{alreadyExists(show)?"check_circle":"add_to_queue"}}</mat-icon>
             </button>
           </mat-card-actions>

@@ -73,6 +73,10 @@ export class AppComponent implements OnInit, AfterContentInit {
   }
 
   addToSonarr(show: SeriesData): void {
+    show._isLoading = true;
+    this.snackBar.open(`Adding "${show.title}" to Sonarr...`, '', {
+      duration: 2000,
+    });
     this.http
       .post<SonarrSeries>(`/series`, { tvdbId: show.tvdbId })
       .subscribe((data) => {
@@ -81,6 +85,7 @@ export class AppComponent implements OnInit, AfterContentInit {
           duration: 3000,
         });
         this.existingSonarrSeriesIds.push(show.tvdbId);
+        show._isLoading = false;
       });
   }
 
