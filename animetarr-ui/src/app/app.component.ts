@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SeriesData } from 'src/models/SeriesData';
 import { SonarrSeries } from 'src/models/SonarrSeries';
@@ -10,10 +10,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterContentInit {
   selectedYear: number = new Date().getFullYear();
   selectedSeason: string = this.getCurrentSeason();
-  shows: SeriesData[] = mockData;
+  isLoading = false;
+  shows: SeriesData[] = []; // mockData;
   existingSonarrSeriesIds: number[] = [];
   mismatches: number[] = JSON.parse(localStorage.getItem('mismatches') ?? '[]');
 
@@ -21,6 +22,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSonarrSeriesIds();
+  }
+
+  ngAfterContentInit(): void {
+    this.loadSchedule();
   }
 
   get matchedShows(): SeriesData[] {
@@ -32,12 +37,17 @@ export class AppComponent implements OnInit {
   }
 
   loadSchedule(): void {
+    this.isLoading = true;
+    const loadingSnackbarRef = this.snackBar.open('Loading data...', '');
+
     this.http
       .get(`/schedule/${this.selectedYear}/${this.selectedSeason}`)
       .subscribe((data) => {
         console.log(data);
         this.shows = data as SeriesData[];
-        this.snackBar.open('Season loaded.', '', { duration: 3000 });
+        loadingSnackbarRef.dismiss();
+        this.snackBar.open('Season loaded.', 'Dismiss', { duration: 3000 });
+        this.isLoading = false;
       });
   }
 

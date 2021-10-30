@@ -6,10 +6,10 @@
 
   <form #f="ngForm">
     <select name="selectedYear" [(ngModel)]="selectedYear">
-      <option [value]="year" *ngFor="let year of [2021, 2020,2019,2018]">{{ year }}
+      <option [value]="year" *ngFor="let year of [2021,2020,2019,2018]">{{ year }}
       </option>
     </select>
-    <select name="selectedSeason" [(ngModel)]="selectedSeason">
+    <select name="selectedSeason" [(ngModel)]="selectedSeason" (change)="loadSchedule()">
       <option [value]="season" *ngFor="let season of ['winter', 'spring', 'summer','fall']">{{ season | titlecase }}
       </option>
     </select>
@@ -19,7 +19,10 @@
     <mat-icon>refresh</mat-icon>
   </button>
 </mat-toolbar>
-<div class="content">
+<!-- <div *ngIf="isLoading" id="loading">
+  <mat-chip color="warning">Loading...</mat-chip>
+</div> -->
+<div *ngIf="!isLoading" class="content">
   <div fxLayout="row wrap" fxLayoutGap="16px grid">
     <div fxFlex="33%" fxFlex.md="50%" fxFlex.sm="100%" fxFlex.xs="100%" *ngFor="let show of matchedShows">
       <mat-card class="mat-elevation-z4">
