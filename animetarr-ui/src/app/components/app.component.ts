@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { SeriesData } from 'src/models/SeriesData';
-import { SonarrSeries } from 'src/models/SonarrSeries';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { SelectedSeason } from '../models';
 import { YoutubeService } from '../services/youtube.service';
+import { AnimuterService } from '../services/animuter.service';
 // import { mockData } from './mockData';
 
 @Component({
@@ -20,9 +19,9 @@ export class AppComponent implements OnInit {
   mismatches: number[] = JSON.parse(localStorage.getItem('mismatches') ?? '[]');
 
   constructor(
-    private http: HttpClient,
     private snackBar: MatSnackBar,
-    private youtube: YoutubeService
+    private youtube: YoutubeService,
+    private animuter: AnimuterService
   ) {}
 
   ngOnInit(): void {
@@ -37,19 +36,17 @@ export class AppComponent implements OnInit {
     return this.shows.filter((s) => this.isMismatched(s));
   }
 
-  loadSchedule(event: SelectedSeason): void {
+  loadSchedule(season: SelectedSeason): void {
     this.isLoading = true;
     const loadingSnackbarRef = this.snackBar.open('Loading data...', '');
 
-    this.http
-      .get(`/schedule/${event.year}/${event.season}`)
-      .subscribe((data) => {
-        console.log(data);
-        this.shows = data as SeriesData[];
-        loadingSnackbarRef.dismiss();
-        this.snackBar.open('Season loaded.', 'Dismiss', { duration: 3000 });
-        this.isLoading = false;
-      });
+    this.animuter.GetSchedule(season).subscribe((seriesData) => {
+      console.log(seriesData);
+      this.shows = seriesData;
+      loadingSnackbarRef.dismiss();
+      this.snackBar.open('Season loaded.', 'Dismiss', { duration: 3000 });
+      this.isLoading = false;
+    });
   }
 
   showCompleteDescription(show: SeriesData): void {
@@ -78,20 +75,18 @@ export class AppComponent implements OnInit {
     this.snackBar.open(`Adding "${show.title}" to Sonarr...`, '', {
       duration: 2000,
     });
-    this.http
-      .post<SonarrSeries>(`/series`, { tvdbId: show.tvdbId })
-      .subscribe((data) => {
-        console.debug('Added', data);
-        this.snackBar.open(`Added "${show.title}" to Sonarr.`, '', {
-          duration: 3000,
-        });
-        this.existingSonarrSeriesIds.push(show.tvdbId);
-        show._isLoading = false;
+    this.animuter.AddByTvDbId(show.tvdbId).subscribe((sonarrSeries) => {
+      console.debug('Added', sonarrSeries);
+      this.snackBar.open(`Added "${show.title}" to Sonarr.`, '', {
+        duration: 3000,
       });
+      this.existingSonarrSeriesIds.push(show.tvdbId);
+      show._isLoading = false;
+    });
   }
 
   getSonarrSeriesIds(): void {
-    this.http.get<number[]>(`/series/ids`).subscribe((seriesIds) => {
+    this.animuter.GetSonarrSeriesIds().subscribe((seriesIds) => {
       this.existingSonarrSeriesIds = seriesIds;
     });
   }
