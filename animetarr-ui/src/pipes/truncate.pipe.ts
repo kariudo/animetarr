@@ -11,9 +11,16 @@ export class TruncatePipe implements PipeTransform {
     ellipsis = '...'
   ): string {
     const shouldTruncate = value.length > limit;
+    let absoluteLimit = Math.abs(limit);
+
     if (shouldTruncate && completeWords) {
-      limit = value.substr(0, limit).lastIndexOf(' ');
+      absoluteLimit = value.substr(0, absoluteLimit).lastIndexOf(' ');
     }
-    return shouldTruncate ? value.substr(0, limit) + ellipsis : value;
+
+    return shouldTruncate
+      ? limit > 0
+        ? value.substr(0, absoluteLimit) + ellipsis
+        : ellipsis + value.substr(absoluteLimit + 1) // Negative limit, we want the part that is "normally" truncated instead.
+      : value; // No need to truncate, return original string.
   }
 }
