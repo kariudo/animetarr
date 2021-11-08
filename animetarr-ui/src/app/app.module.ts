@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { AppComponent } from './app.component';
+import { AppComponent } from './components/app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
@@ -18,9 +18,10 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { TruncatePipe } from 'src/pipes/truncate.pipe';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 @NgModule({
-  declarations: [AppComponent, TruncatePipe],
+  declarations: [AppComponent, TruncatePipe, ToolbarComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

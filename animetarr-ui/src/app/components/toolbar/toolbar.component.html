@@ -1,0 +1,15 @@
+<mat-toolbar>
+  <mat-icon class="logo-icon">queue_play_next</mat-icon>
+  <span class="app-name">Animetarr</span>
+  <span class="spacer"></span>
+  <form #f="ngForm">
+    <select name="selectedYear" [(ngModel)]="selectedYear" (change)="EmitSeasonSelected()">
+      <option [value]="year" *ngFor="let year of [2021,2020,2019,2018]">{{ year }}
+      </option>
+    </select>
+    <select name="selectedSeason" [(ngModel)]="selectedSeason" (change)="EmitSeasonSelected()">
+      <option [value]="season" *ngFor="let season of ['winter', 'spring', 'summer','fall']">{{ season | titlecase }}
+      </option>
+    </select>
+  </form>
+</mat-toolbar>

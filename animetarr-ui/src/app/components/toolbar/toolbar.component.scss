@@ -1,0 +1,24 @@
+select {
+  background: #fff2;
+  color: #fff;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  margin: 0 8px;
+}
+
+option {
+  color: initial;
+}
+
+.app-name {
+  font-family: "Major Mono Display";
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.logo-icon {
+  margin-right: 10px;
+}

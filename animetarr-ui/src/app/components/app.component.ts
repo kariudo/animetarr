@@ -1,31 +1,32 @@
-import { AfterContentInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SeriesData } from 'src/models/SeriesData';
 import { SonarrSeries } from 'src/models/SonarrSeries';
-import { mockData } from './mockData';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { SelectedSeason } from '../models';
+import { YoutubeService } from '../services/youtube.service';
+// import { mockData } from './mockData';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit, AfterContentInit {
-  selectedYear: number = new Date().getFullYear();
-  selectedSeason: string = this.getCurrentSeason();
+export class AppComponent implements OnInit {
   isLoading = false;
   shows: SeriesData[] = []; // mockData;
   existingSonarrSeriesIds: number[] = [];
   mismatches: number[] = JSON.parse(localStorage.getItem('mismatches') ?? '[]');
 
-  constructor(private http: HttpClient, private snackBar: MatSnackBar) {}
+  constructor(
+    private http: HttpClient,
+    private snackBar: MatSnackBar,
+    private youtube: YoutubeService
+  ) {}
 
   ngOnInit(): void {
     this.getSonarrSeriesIds();
-  }
-
-  ngAfterContentInit(): void {
-    this.loadSchedule();
   }
 
   get matchedShows(): SeriesData[] {
@@ -36,12 +37,12 @@ export class AppComponent implements OnInit, AfterContentInit {
     return this.shows.filter((s) => this.isMismatched(s));
   }
 
-  loadSchedule(): void {
+  loadSchedule(event: SelectedSeason): void {
     this.isLoading = true;
     const loadingSnackbarRef = this.snackBar.open('Loading data...', '');
 
     this.http
-      .get(`/schedule/${this.selectedYear}/${this.selectedSeason}`)
+      .get(`/schedule/${event.year}/${event.season}`)
       .subscribe((data) => {
         console.log(data);
         this.shows = data as SeriesData[];
@@ -55,13 +56,13 @@ export class AppComponent implements OnInit, AfterContentInit {
     window.alert(show.description);
   }
 
+  /**
+   * Pop a window with youtube results for a preview of the series.
+   *
+   * @param show Series to search for.
+   */
   showVideo(show: SeriesData): void {
-    window.open(
-      `https://www.youtube.com/results?search_query=${show.title
-        .split(' ')
-        .join('+')}+pv`,
-      '_blank'
-    );
+    window.open(this.youtube.GetPreviewSearchLink(show), '_blank');
   }
 
   alreadyExists(show: SeriesData): boolean {
@@ -99,25 +100,5 @@ export class AppComponent implements OnInit, AfterContentInit {
     this.mismatches.push(show.tvdbId);
     localStorage.setItem('mismatches', JSON.stringify(this.mismatches));
     this.snackBar.open('Marked as mismatch.', '', { duration: 3000 });
-  }
-
-  private getCurrentSeason(): string {
-    const month = new Date().getMonth();
-    switch (month) {
-      case 11:
-      case 12:
-      case 1:
-        return 'winter';
-      case 2:
-      case 3:
-      case 4:
-        return 'spring';
-      case 5:
-      case 6:
-      case 7:
-        return 'summer';
-      default:
-        return 'fall';
-    }
   }
 }
