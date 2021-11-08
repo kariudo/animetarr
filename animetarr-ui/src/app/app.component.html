@@ -1,6 +1,6 @@
 <mat-toolbar>
-  <mat-icon class="logo-icon">theaters</mat-icon>
-  Animetarr
+  <mat-icon class="logo-icon">queue_play_next</mat-icon>
+  <span class="app-name">Animetarr</span>
   <span class="spacer"></span>
 
 
@@ -43,7 +43,8 @@
                 <div class="description">
                   <span>{{show.description | truncate:300:true}}
                     <mat-icon class="more-description-icon" *ngIf="show.description.length > 300"
-                      (click)="showCompleteDescription(show)" [inline]=true>
+                      (click)="showCompleteDescription(show)" [inline]=true
+                      matTooltip="{{show.description | truncate:-300:true}}">
                       description</mat-icon>
                   </span>
                 </div>
@@ -64,16 +65,16 @@
                 <mat-icon>warning</mat-icon>
               </button>
             </span>
-            <button mat-mini-fab color="primary" (click)="addToSonarr(show)"
+            <button mat-mini-fab color="accent" (click)="addToSonarr(show)"
               [disabled]="show._isLoading || alreadyExists(show)">
-              <mat-icon>{{alreadyExists(show)?"check_circle":"add_to_queue"}}</mat-icon>
+              <mat-icon>{{alreadyExists(show)?"check_circle":"add"}}</mat-icon>
             </button>
           </mat-card-actions>
         </mat-card>
       </div>
     </div>
   </div>
-  <mat-toolbar *ngIf="mismatchedShows.length > 0"> color="warning">Mismatched</mat-toolbar>
+  <mat-toolbar *ngIf="mismatchedShows.length > 0" color="warning">Mismatched</mat-toolbar>
   <div *ngIf="mismatchedShows.length > 0" class="content">
     <div fxFlex="33%" fxFlex.md="50%" fxFlex.sm="100%" fxFlex.xs="100%" *ngFor="let show of mismatchedShows">
       <mat-card class="mat-elevation-z4">
