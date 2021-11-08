@@ -42,7 +42,7 @@ export class ToolbarComponent implements AfterContentInit {
   }
 
   buyMeACoffee(): void {
-    window.open('https://ko-fi.com/kariudo', '_blank');
+    window.open('https://www.buymeacoffee.com/kariudo', '_blank');
   }
 
   private getCurrentSeason(): string {
