@@ -2,6 +2,12 @@
   <mat-icon class="logo-icon">queue_play_next</mat-icon>
   <span class="app-name">Animetarr</span>
   <span class="spacer"></span>
+  <button mat-icon-button matTooltip="Buy me a coffee?" (click)="buyMeACoffee()">
+    <mat-icon>coffee</mat-icon>
+  </button>
+  <button mat-icon-button matTooltip="@kariudo/animetarr" (click)="showGithub()">
+    <mat-icon svgIcon="github-icon"></mat-icon>
+  </button>
   <form #f="ngForm">
     <select name="selectedYear" [(ngModel)]="selectedYear" (change)="EmitSeasonSelected()">
       <option [value]="year" *ngFor="let year of [2021,2020,2019,2018]">{{ year }}

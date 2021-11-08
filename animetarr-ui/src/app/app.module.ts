@@ -22,7 +22,12 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { SeriesCardComponent } from './components/series-card/series-card.component';
 
 @NgModule({
-  declarations: [AppComponent, TruncatePipe, ToolbarComponent, SeriesCardComponent],
+  declarations: [
+    AppComponent,
+    TruncatePipe,
+    ToolbarComponent,
+    SeriesCardComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,

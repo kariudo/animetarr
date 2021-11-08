@@ -4,6 +4,8 @@ import {
   AfterContentInit,
   EventEmitter,
 } from '@angular/core';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 import { SelectedSeason } from '../../models';
 
 @Component({
@@ -17,6 +19,13 @@ export class ToolbarComponent implements AfterContentInit {
 
   @Output() onSeasonSelected = new EventEmitter<SelectedSeason>();
 
+  constructor(iconReg: MatIconRegistry, sanitizer: DomSanitizer) {
+    iconReg.addSvgIcon(
+      'github-icon',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/svg/icons/github.svg')
+    );
+  }
+
   ngAfterContentInit(): void {
     this.EmitSeasonSelected();
   }
@@ -26,6 +35,14 @@ export class ToolbarComponent implements AfterContentInit {
       season: this.selectedSeason,
       year: this.selectedYear,
     });
+  }
+
+  showGithub(): void {
+    window.open('https://github.com/kariudo/animetarr', '_blank');
+  }
+
+  buyMeACoffee(): void {
+    window.open('https://ko-fi.com/kariudo', '_blank');
   }
 
   private getCurrentSeason(): string {

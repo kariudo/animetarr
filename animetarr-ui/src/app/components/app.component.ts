@@ -3,7 +3,6 @@ import { SeriesData } from 'src/models/SeriesData';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { SelectedSeason } from '../models';
-import { YoutubeService } from '../services/youtube.service';
 import { AnimuterService } from '../services/animuter.service';
 // import { mockData } from './mockData';
 
@@ -20,7 +19,6 @@ export class AppComponent implements OnInit {
 
   constructor(
     private snackBar: MatSnackBar,
-    private youtube: YoutubeService,
     private animuter: AnimuterService
   ) {}
 
