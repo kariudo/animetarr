@@ -1,0 +1,48 @@
+<mat-card class="mat-elevation-z4">
+  <mat-card-content>
+    <div fxFlex="row">
+      <div class=poster fxFlex>
+        <img class="mat-elevation-z6 rounded" [src]="series.posterUrl" alt="poster">
+        <div class="left-pill mat-elevation-z3">
+          <mat-icon class="side-icon">tv</mat-icon>
+          <span>{{series.airdate|date}}</span>
+        </div>
+      </div>
+      <div class="details">
+        <div class="titles">
+          <div class="title" matTooltip="{{series.aliases.join(', ')}}">{{series.title}}</div>
+          <div class="subtitle">
+            <strong>{{series.season|titlecase}} {{series.queryYear}}</strong> - <em>{{series.status}}</em>
+          </div>
+        </div>
+        <div class="description">
+          <span>{{series.description | truncate:300:true}}
+            <mat-icon class="more-description-icon" *ngIf="series.description.length > 300"
+              (click)="showCompleteDescription(series)" [inline]=true
+              matTooltip="{{series.description | truncate:-300:true}}">
+              description</mat-icon>
+          </span>
+        </div>
+        <div class="chips">
+          <mat-chip-list>
+            <mat-chip *ngFor="let tag of series.tags" color="accent" selected>{{tag}}</mat-chip>
+          </mat-chip-list>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <span class="left-buttons">
+      <button mat-icon-button (click)="showVideo(series)" matTooltip="View preview videos">
+        <mat-icon>video_library</mat-icon>
+      </button>
+      <button mat-icon-button (click)="markMismatch(series)" matTooltip="Mark mismatched">
+        <mat-icon>warning</mat-icon>
+      </button>
+    </span>
+    <button mat-mini-fab color="accent" (click)="addToSonarr(series)"
+      [disabled]="series._isLoading || alreadyExists(series)">
+      <mat-icon>{{alreadyExists(series)?"check_circle":"add"}}</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

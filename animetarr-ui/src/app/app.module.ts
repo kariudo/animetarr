@@ -19,9 +19,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { TruncatePipe } from 'src/pipes/truncate.pipe';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { SeriesCardComponent } from './components/series-card/series-card.component';
 
 @NgModule({
-  declarations: [AppComponent, TruncatePipe, ToolbarComponent],
+  declarations: [AppComponent, TruncatePipe, ToolbarComponent, SeriesCardComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

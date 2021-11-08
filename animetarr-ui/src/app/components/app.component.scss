@@ -1,76 +1,8 @@
-.poster {
-  min-width: 168px;
-  z-index: 2;
-}
-
-.details {
-  padding-left: 20px;
-  height: 200px;
-}
-
-.titles {
-  border-radius: 5px;
-  background: #0003;
-  padding: 16px 16px 16px 32px;
-  margin: 0 0 0 -32px;
-  z-index: 1;
-  height: 60px;
-}
-
-.title {
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.subtitle {
-  font-size: 12px;
-  opacity: 0.6;
-}
-
-.description {
-  margin-top: 20px;
-  overflow-x: hidden;
-  font-size: 12px;
-  border-radius: 5px;
-  height: 120px;
-}
-
-.more-description-icon {
-  cursor: pointer;
-}
-
-.chips {
-  margin: 16px 0;
-}
-
-.left-pill {
-  background: #0006;
-  padding: 6px 10px;
-  border-radius: 5px;
-  margin-top: 5px;
-}
-
-.rounded {
-  border-radius: 5px;
-  max-height: 256px;
-  max-width: 100%;
-}
-
-.side-icon {
-  vertical-align: middle;
-  margin-right: 10px;
+.scrollable-content {
+  height: calc(100vh - 60px);
+  overflow-y: auto;
 }
 
 .content {
   padding: 20px 60px;
-}
-
-mat-card-actions {
-  display: flex;
-  justify-content: space-between;
-}
-
-.scrollable-content {
-  height: calc(100vh - 60px);
-  overflow-y: auto;
 }
