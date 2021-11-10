@@ -1,4 +1,4 @@
-FROM trion/ng-cli:12.1.1
+FROM trion/ng-cli:12.1.1 as build
 
 EXPOSE 3000
 
@@ -11,11 +11,17 @@ ENV SONARR_BASE_PATH="/downloads/anime/"
 
 USER root
 
-WORKDIR /app
+WORKDIR /build
 ADD . .
 RUN npm ci
-WORKDIR /app/animetarr-ui
+RUN npm run-script build
+WORKDIR /build/animetarr-ui
 RUN npm ci
-RUN ng build
+RUN npm run-script build
+
+FROM node:14.17-alpine
+
 WORKDIR /app
-CMD ["npm", "start"]
+COPY --from=build /build/dist .
+COPY --from=build /build/.env.example .
+CMD ["node", "."]

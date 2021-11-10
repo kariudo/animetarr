@@ -4,7 +4,6 @@
 [![TypeScript](https://badgen.net/badge/icon/typescript?icon=typescript&label)](https://typescriptlang.org)
 [![Buymeacoffee](https://badgen.net/badge/icon/buymeacoffee?icon=buymeacoffee&label)]([https://https://www.buymeacoffee.com/](https://www.buymeacoffee.com/kariudo))
 
-
 Pronoucned [ˈanimādər] like "Animator", you can query scheduled or historical anime releases and add them to your Sonarr instance.
 
 ## Screenshot
@@ -16,15 +15,15 @@ Pronoucned [ˈanimādər] like "Animator", you can query scheduled or historical
 Animetarr is available as a docker image and published to Docker Hub: `kariudo/animetarr:latest`, you will need to provide the required environment variables though.
 
 ```shell
-$ docker run -d kariudo/animetarr:latest \
-    --name animetarr \
+$ docker run --name animetarr\
     -p 3000:3000/tcp \
     -e API_PORT=3000 \
-    -e TVDB_API_KEY="YOURKEYHERE" \
-    -e SONARR_API_BASE_URL="https://sonarr.yourhost.local/api" \
-    -e SONARR_API_KEY="YOURKEYHERE" \
+    -e TVDB_API_KEY="YOURTVDBIDKEY" \
+    -e SONARR_API_BASE_URL="https://sonarr.home.host.local/api" \
+    -e SONARR_API_KEY="YOURSONARRAPIKEY" \
     -e SONARR_QUALITY_PROFILE_ID=3 \
-    -e SONARR_BASE_PATH="/downloads/anime/"
+    -e SONARR_BASE_PATH="/downloads/anime/"\
+    -d kariudo/animetarr:latest
 ```
 
 ## Usage (Development/shell)

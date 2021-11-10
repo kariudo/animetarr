@@ -4,6 +4,7 @@
   "description": "Pronounced 'Animator', this service provides an interface to review and add anime to Sonarr and Radarr based on release schedule.",
   "main": "dist/app.js",
   "scripts": {
+    "build": "./node_modules/.bin/ncc build src/app.ts",
     "start": "./node_modules/.bin/tsc && node dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,6 +22,7 @@
     "@types/node-fetch": "^2.5.10",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
+    "@vercel/ncc": "^0.31.1",
     "eslint": "^7.29.0",
     "typescript": "^4.3.4"
   }
