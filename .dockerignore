@@ -1,0 +1,7 @@
+/dist
+/node_modules
+/animetarr-ui/dist
+/animetarr-ui/node_modules
+/.assets
+/.vscode
+/.github
