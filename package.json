@@ -18,7 +18,9 @@
     "test": "echo \"Warning: no test specified\" && exit 0",
     "preversion": "npm test",
     "version": "npm run build",
-    "postversion": "git push && git push --tags && rimraf dist && docker build -t $npm_package_config_docker_ns/$npm_package_name:latest . && docker-publish"
+    "postversion": "run-script-os",
+    "postversion:nix": "git push && git push --tags && rimraf dist && docker build -t $npm_package_config_docker_ns/$npm_package_name:latest . && docker-publish",
+    "postversion:windows": "git push && git push --tags && rimraf dist && docker build -t %npm_package_config_docker_ns%/%npm_package_name%:latest . && docker-publish"
   },
   "author": "Hunter Horsman",
   "license": "ISC",
@@ -38,6 +40,7 @@
     "@vercel/ncc": "^0.31.1",
     "eslint": "^7.29.0",
     "rimraf": "^3.0.2",
+    "run-script-os": "^1.1.6",
     "typescript": "^4.3.4"
   }
 }
