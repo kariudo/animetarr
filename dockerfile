@@ -14,10 +14,10 @@ USER root
 WORKDIR /build
 ADD . .
 RUN npm ci
-RUN npm run-script build
+RUN npm run build
 WORKDIR /build/animetarr-ui
 RUN npm ci
-RUN npm run-script build
+RUN npm run build
 
 FROM node:14.17-alpine
 
