@@ -8,12 +8,12 @@
   "description": "Pronounced 'Animator', this service provides an interface to review and add anime to Sonarr and Radarr based on release schedule.",
   "main": "dist/app.js",
   "scripts": {
-    "build": "./node_modules/.bin/ncc build -m --license LICENSE.md src/app.ts",
-    "start": "./node_modules/.bin/tsc && node dist/app.js",
+    "build": "ncc build -m --license LICENSE.md src/app.ts",
+    "start": "tsc && node dist/app.js",
     "test": "echo \"Warning: no test specified\" && exit 0",
     "preversion": "npm test",
     "version": "npm run build",
-    "postversion": "git push && git push --tags && ./node_modules/.bin/rimraf dist"
+    "postversion": "git push && git push --tags && rimraf dist"
   },
   "author": "Hunter Horsman",
   "license": "ISC",
