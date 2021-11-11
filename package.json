@@ -1,6 +1,6 @@
 {
   "name": "animetarr",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Pronounced 'Animator', this service provides an interface to review and add anime to Sonarr and Radarr based on release schedule.",
   "main": "dist/app.js",
   "scripts": {
