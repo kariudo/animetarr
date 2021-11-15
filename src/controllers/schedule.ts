@@ -1,14 +1,12 @@
 import express from "express";
 
-import { Format } from "../models/Format.enum";
-import { Season } from "../models/Season.enum";
+import { Season, Format, AnichartMedia, GetTitle } from "../models";
 import { GetSeasonMedia } from "../services/anichart";
-import { AnichartMedia, GetTitle } from "../models/AnichartMedia";
 import { matchSeriesTitle as matchSeriesByTitle } from "../services/tvdb";
 
 export const schedule = express.Router();
 
-schedule.get("/schedule/:year/:season", async (req, res) => {
+schedule.get("/:year/:season", async (req, res) => {
   const year = Number(req.params.year);
   const season = req.params.season.toUpperCase() as Season;
 

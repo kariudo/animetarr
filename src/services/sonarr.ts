@@ -1,6 +1,5 @@
-import fetch from "node-fetch";
-import { Headers } from "node-fetch";
-import { SonarrSeries } from "../models/SonarrSeries";
+import fetch, { Headers } from "node-fetch";
+import { SonarrSeries } from "../models";
 
 const baseUrl = process.env.SONARR_API_BASE_URL;
 if (!baseUrl) {

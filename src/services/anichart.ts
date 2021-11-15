@@ -1,7 +1,5 @@
-import { AnichartMedia } from "../models/AnichartMedia";
-import { Format } from "../models/Format.enum";
-import { Season } from "../models/Season.enum";
 import fetch from "node-fetch";
+import { AnichartMedia, Format, Season } from "../models";
 import { anichartQuery } from "./graphQLQuery";
 
 export const GetSeasonMedia = async function (

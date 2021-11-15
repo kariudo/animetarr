@@ -12,7 +12,7 @@ export interface SonarrSeries {
   previousAiring: string;
   network: string;
   images: Image[];
-  seasons: Season[];
+  seasons: SonarrSeason[];
   year: number;
   path: string;
   profileId: number;
@@ -55,7 +55,7 @@ export interface Ratings {
   value: number;
 }
 
-export interface Season {
+interface SonarrSeason {
   seasonNumber: number;
   monitored: boolean;
   statistics: Statistics;
