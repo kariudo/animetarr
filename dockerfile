@@ -23,5 +23,4 @@ FROM node:14.17-alpine
 
 WORKDIR /app
 COPY --from=build /build/dist .
-COPY --from=build /build/.env.example .
 CMD ["node", "."]

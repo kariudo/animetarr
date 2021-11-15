@@ -13,7 +13,7 @@
     }
   },
   "scripts": {
-    "build": "ncc build -m --license LICENSE.md src/app.ts",
+    "build": "rimraf dist && ncc build -m --license LICENSE.md src/app.ts && copyfiles .env.example dist",
     "start": "tsc && node dist/app.js",
     "test": "echo \"Warning: no test specified\" && exit 0",
     "preversion": "npm test",
@@ -38,6 +38,7 @@
     "@typescript-eslint/parser": "^4.28.1",
     "@vanioinformatika/docker-publish": "^2.1.2",
     "@vercel/ncc": "^0.31.1",
+    "copyfiles": "^2.4.1",
     "eslint": "^7.29.0",
     "rimraf": "^3.0.2",
     "run-script-os": "^1.1.6",
