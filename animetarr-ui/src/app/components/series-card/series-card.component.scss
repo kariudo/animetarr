@@ -38,13 +38,14 @@
 }
 
 .description {
-  margin-top: 20px;
+  margin: 16px 0 0 0;
   overflow-x: clip;
   font-size: 12px;
   border-radius: 5px;
   text-align: justify;
   @media screen and (min-width: 600px) {
     height: 120px;
+    margin-right: 16px;
   }
 }
 
