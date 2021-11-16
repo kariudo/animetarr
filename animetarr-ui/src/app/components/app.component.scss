@@ -5,4 +5,13 @@
 
 .content {
   padding: 20px 60px;
+  @media screen and (max-width: 1919px) and (min-width: 1600px) {
+    padding: 20px 15%;
+  }
+  @media screen and (max-width: 1279px) and (min-width: 1000px) {
+    padding: 20px 15%;
+  }
+  @media screen and (max-width: 690px) {
+    padding: 20px 5px;
+  }
 }

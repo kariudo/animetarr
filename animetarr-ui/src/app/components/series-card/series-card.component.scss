@@ -1,20 +1,30 @@
 .poster {
-  min-width: 168px;
   z-index: 2;
+  > img {
+    width: 100%;
+  }
 }
 
 .details {
-  padding-left: 20px;
-  height: 200px;
+  @media screen and (min-width: 600px) {
+    height: 200px;
+    padding-left: 20px;
+  }
+  @media screen and (max-width: 599px) {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
 }
 
 .titles {
-  border-radius: 5px;
-  background: #0003;
-  padding: 16px 16px 16px 32px;
-  margin: 0 0 0 -32px;
+  @media screen and (min-width: 600px) {
+    border-radius: 5px;
+    background: #0003;
+    padding: 16px 16px 16px 32px;
+    margin: 0 0 0 -32px;
+    height: 60px;
+  }
   z-index: 1;
-  height: 60px;
 }
 
 .title {
@@ -29,10 +39,13 @@
 
 .description {
   margin-top: 20px;
-  overflow-x: hidden;
+  overflow-x: clip;
   font-size: 12px;
   border-radius: 5px;
-  height: 120px;
+  text-align: justify;
+  @media screen and (min-width: 600px) {
+    height: 120px;
+  }
 }
 
 .more-description-icon {
@@ -52,8 +65,6 @@
 
 .rounded {
   border-radius: 5px;
-  max-height: 256px;
-  max-width: 100%;
 }
 
 .side-icon {

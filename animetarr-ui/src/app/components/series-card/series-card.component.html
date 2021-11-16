@@ -1,14 +1,10 @@
 <mat-card class="mat-elevation-z4">
   <mat-card-content>
-    <div fxFlex="row">
-      <div class=poster fxFlex>
+    <div fxLayout="row wrap" fxLayoutAlign.lt-sm="center">
+      <div class=poster fxFlex="25%" fxFlex.lt-sm="60%">
         <img class="mat-elevation-z6 rounded" [src]="series.posterUrl" alt="poster">
-        <div class="left-pill mat-elevation-z3">
-          <mat-icon class="side-icon">tv</mat-icon>
-          <span>{{series.airdate|date}}</span>
-        </div>
       </div>
-      <div class="details">
+      <div class="details" fxFlex="75%" fxFlex.lt-sm="100%">
         <div class="titles">
           <div class="title" matTooltip="{{series.aliases.join(', ')}}">{{series.title}}</div>
           <div class="subtitle">
@@ -16,20 +12,26 @@
           </div>
         </div>
         <div class="description">
-          <span>{{series.description | truncate:300:true}}
-            <mat-icon class="more-description-icon" *ngIf="series.description.length > 300"
+          <span>{{series.description | truncate:400:true}}
+            <mat-icon class="more-description-icon" *ngIf="series.description.length > 400"
               (click)="showCompleteDescription(series)" [inline]=true
-              matTooltip="{{series.description | truncate:-300:true}}">
+              matTooltip="{{series.description | truncate:-400:true}}">
               description</mat-icon>
           </span>
         </div>
-        <div class="chips">
-          <mat-chip-list>
-            <mat-chip *ngFor="let tag of series.tags" color="accent" selected>{{tag}}</mat-chip>
-          </mat-chip-list>
-        </div>
       </div>
+      <div class="left-pill mat-elevation-z3" fxFlex="25%" fxFlex.lt-sm="100%">
+        <mat-icon class="side-icon">tv</mat-icon>
+        <span>{{series.airdate|date}}</span>
+      </div>
+      <div class="chips" fxFlex="100%">
+        <mat-chip-list>
+          <mat-chip *ngFor="let tag of series.tags" color="accent" selected>{{tag}}</mat-chip>
+        </mat-chip-list>
+      </div>
+
     </div>
+
   </mat-card-content>
   <mat-card-actions>
     <span class="left-buttons">
