@@ -13,7 +13,7 @@
     }
   },
   "scripts": {
-    "build": "rimraf dist && ncc build -m --license LICENSE.md src/app.ts && copyfiles .env.example dist && npm run build:ui",
+    "build": "rimraf dist && ncc build -m --license LICENSE.md src/app.ts && copyfiles .env.example dist",
     "build:ui": "npm run build --prefix .\\animetarr-ui\\",
     "start": "tsc && node dist/app.js",
     "test": "echo \"Warning: no test specified\" && exit 0",
