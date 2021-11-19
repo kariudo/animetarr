@@ -1,18 +1,1 @@
-<app-toolbar (onSeasonSelected)="loadSchedule($event)"></app-toolbar>
-<div class="scrollable-content">
-  <div *ngIf="!isLoading" class="content">
-    <div fxLayout="row wrap" fxLayoutGap="16px grid">
-      <div fxFlex="33%" fxFlex.lt-xl="50%" fxFlex.lt-lg="100%" *ngFor="let show of matchedShows">
-        <app-series-card [series]="show" [existingSonarrSeriesIds]="existingSonarrSeriesIds" [mismatches]="mismatches">
-        </app-series-card>
-      </div>
-    </div>
-  </div>
-  <mat-toolbar *ngIf="mismatchedShows.length > 0" color="warning">Mismatched</mat-toolbar>
-  <div *ngIf="mismatchedShows.length > 0" class="content">
-    <div fxFlex="33%" fxFlex.md="50%" fxFlex.sm="100%" fxFlex.xs="100%" *ngFor="let show of mismatchedShows">
-      <app-series-card [series]="show" [existingSonarrSeriesIds]="existingSonarrSeriesIds" [mismatches]="mismatches">
-      </app-series-card>
-    </div>
-  </div>
-</div>
+<router-outlet></router-outlet>

@@ -21,7 +21,7 @@ if (existsSync(inRootDir)) {
 // Use static files middleware.
 root.use(express.static(uiPath));
 
-// GET / - Serve the root as the static index.html, keeps us from needing to have 'api' in our routes.
-root.get("/", (req, res) => {
-  res.sendFile(join(__dirname, "/ui/index.html"));
+// also serve other Angular routes as index.html
+root.get(["/dashboard", "/login"], (req, res) => {
+  res.sendFile(join(uiPath, "index.html"));
 });

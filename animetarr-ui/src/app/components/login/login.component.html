@@ -1,0 +1,20 @@
+<app-toolbar></app-toolbar>
+<form (ngSubmit)="login()" #loginForm="ngForm">
+  <mat-card class="login-card">
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-content>
+      <div class="form-group">
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input id="password" class="form-control" matInput placeholder="password" [(ngModel)]="credentials.password"
+            type="password" required>
+          <mat-icon matSuffix>key</mat-icon>
+          <mat-hint>Configured in server environment.</mat-hint>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.form.invalid">Login</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

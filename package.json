@@ -12,6 +12,12 @@
       "ns": "kariudo"
     }
   },
+  "nodemonConfig": {
+    "ignore": [
+      "dist/*",
+      "animetarr-ui/*"
+    ]
+  },
   "scripts": {
     "build": "rimraf dist && ncc build -m --license LICENSE.md src/app.ts && copyfiles .env.example dist",
     "build:ui": "npm run build --prefix .\\animetarr-ui\\",
@@ -21,7 +27,8 @@
     "version": "npm run build",
     "postversion": "run-script-os",
     "postversion:nix": "git push && git push --tags && rimraf dist && docker build -t $npm_package_config_docker_ns/$npm_package_name:latest . && docker-publish",
-    "postversion:windows": "git push && git push --tags && rimraf dist && docker build -t %npm_package_config_docker_ns%/%npm_package_name%:latest . && docker-publish"
+    "postversion:windows": "git push && git push --tags && rimraf dist && docker build -t %npm_package_config_docker_ns%/%npm_package_name%:latest . && docker-publish",
+    "dev": "nodemon -e ts  --exec \"npm run start\""
   },
   "author": "Hunter Horsman",
   "license": "ISC",
@@ -29,7 +36,8 @@
     "dotenv-safe": "^8.2.0",
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",
-    "node-tvdb": "^4.1.0"
+    "node-tvdb": "^4.1.0",
+    "nodemon": "^2.0.15"
   },
   "devDependencies": {
     "@types/dotenv-safe": "^8.1.1",
