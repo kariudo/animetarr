@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AnimuterService } from 'src/app/services/animuter.service';
+import { AnimetarrService } from 'src/app/services/animetarr.service';
 import { YoutubeService } from 'src/app/services/youtube.service';
 import { SeriesData } from 'src/models/SeriesData';
 
@@ -21,7 +21,7 @@ export class SeriesCardComponent {
 
   constructor(
     private youtube: YoutubeService,
-    private animuter: AnimuterService,
+    private animetarr: AnimetarrService,
     private snackBar: MatSnackBar
   ) {}
 
@@ -46,7 +46,7 @@ export class SeriesCardComponent {
     this.snackBar.open(`Adding "${show.title}" to Sonarr...`, '', {
       duration: 2000,
     });
-    this.animuter.AddByTvDbId(show.tvdbId).subscribe((sonarrSeries) => {
+    this.animetarr.AddByTvDbId(show.tvdbId).subscribe((sonarrSeries) => {
       console.debug('Added', sonarrSeries);
       this.snackBar.open(`Added "${show.title}" to Sonarr.`, '', {
         duration: 3000,

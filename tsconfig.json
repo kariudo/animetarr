@@ -9,7 +9,8 @@
     "skipLibCheck": true, /* Skip type checking of declaration files. */
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
     "removeComments": true,
-    "preserveConstEnums": true
+    "preserveConstEnums": true,
+    "resolveJsonModule": true
   },
   "include": [
     "src/**/*"

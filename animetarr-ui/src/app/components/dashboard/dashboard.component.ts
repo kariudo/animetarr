@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SelectedSeason } from 'src/app/models';
-import { AnimuterService } from 'src/app/services/animuter.service';
+import { AnimetarrService } from 'src/app/services/animetarr.service';
 import { SeriesData } from 'src/models/SeriesData';
 
 @Component({
@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private snackBar: MatSnackBar,
-    private animuter: AnimuterService
+    private animetarr: AnimetarrService
   ) {}
 
   ngOnInit(): void {
@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
     this.isLoading = true;
     const loadingSnackbarRef = this.snackBar.open('Loading data...', '');
 
-    this.animuter.GetSchedule(season).subscribe((seriesData) => {
+    this.animetarr.GetSchedule(season).subscribe((seriesData) => {
       console.log(seriesData);
       this.shows = seriesData;
       loadingSnackbarRef.dismiss();
@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getSonarrSeriesIds(): void {
-    this.animuter.GetSonarrSeriesIds().subscribe((seriesIds) => {
+    this.animetarr.GetSonarrSeriesIds().subscribe((seriesIds) => {
       this.existingSonarrSeriesIds = seriesIds;
     });
   }

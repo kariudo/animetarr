@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AnimetarrService } from 'src/app/services/animetarr.service';
 import { SelectedSeason } from '../../models';
 
 @Component({
@@ -16,14 +17,22 @@ import { SelectedSeason } from '../../models';
 export class ToolbarComponent implements AfterContentInit {
   selectedYear: number = new Date().getFullYear();
   selectedSeason: string = this.getCurrentSeason();
+  version = 'Loading...';
 
   @Output() onSeasonSelected = new EventEmitter<SelectedSeason>();
 
-  constructor(iconReg: MatIconRegistry, sanitizer: DomSanitizer) {
+  constructor(
+    iconReg: MatIconRegistry,
+    sanitizer: DomSanitizer,
+    private animetarr: AnimetarrService
+  ) {
     iconReg.addSvgIcon(
       'github-icon',
       sanitizer.bypassSecurityTrustResourceUrl('assets/svg/icons/github.svg')
     );
+    animetarr.GetVersion().subscribe((version: string) => {
+      this.version = `v${version}`;
+    });
   }
 
   ngAfterContentInit(): void {

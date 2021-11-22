@@ -3,7 +3,7 @@ dotenv.config();
 
 import express from "express";
 
-import { root, series, schedule, auth } from "./controllers";
+import { root, series, schedule, auth, version } from "./controllers";
 import { isAuthorized } from "./services/auth";
 
 // Configure Express
@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use("/", root);
 app.use("/auth", auth);
+app.use("/version", version);
 app.use("/series", isAuthorized, series);
 app.use("/schedule", isAuthorized, schedule);
 

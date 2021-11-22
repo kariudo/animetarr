@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AnimuterService } from './animuter.service';
+import { AnimetarrService } from './animetarr.service';
 
-describe('AnimuterService', () => {
-  let service: AnimuterService;
+describe('AnimetarrService', () => {
+  let service: AnimetarrService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AnimuterService);
+    service = TestBed.inject(AnimetarrService);
   });
 
   it('should be created', () => {

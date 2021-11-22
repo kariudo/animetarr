@@ -8,8 +8,12 @@ import { SelectedSeason } from '../models';
 @Injectable({
   providedIn: 'root',
 })
-export class AnimuterService {
+export class AnimetarrService {
   constructor(private http: HttpClient) {}
+
+  GetVersion(): Observable<string> {
+    return this.http.get<string>('/version');
+  }
 
   GetSchedule(season: SelectedSeason): Observable<SeriesData[]> {
     return this.http.get<SeriesData[]>(
