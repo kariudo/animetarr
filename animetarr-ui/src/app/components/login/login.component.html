@@ -6,8 +6,8 @@
       <div class="form-group">
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input id="password" class="form-control" matInput placeholder="password" [(ngModel)]="credentials.password"
-            type="password" required>
+          <input id="password" class="form-control" matInput placeholder="password" name="password"
+            [(ngModel)]="credentials.password" type="password" required>
           <mat-icon matSuffix>key</mat-icon>
           <mat-hint>Configured in server environment.</mat-hint>
         </mat-form-field>
