@@ -14,6 +14,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatOptionModule } from '@angular/material/core';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -62,6 +63,7 @@ const routes: Routes = [
     MatSnackBarModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatCheckboxModule,
     MatOptionModule,
     MatTooltipModule,
     BrowserAnimationsModule,

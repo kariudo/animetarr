@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -7,13 +8,15 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  isAuthenticated = false;
-  password = '';
+  isAuthenticated: boolean;
+  password: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {
+    this.password = localStorage.getItem('credentials') || '';
+    this.isAuthenticated = !!this.password.length;
+  }
 
-  authenticate(password: string): Observable<boolean> {
-    // TODO hit the server with the password to test it, if it works, save it and use it.
+  authenticate(password: string, rememberMe = false): Observable<boolean> {
     return this.http
       .post<boolean>(`/auth`, {
         password,
@@ -24,7 +27,9 @@ export class AuthenticationService {
             this.isAuthenticated = true;
             this.password = btoa(password);
             console.log('password is awesome, encoding as ', this.password);
-            // TODO store it.        localStorage.setItem('password', JSON.stringify(password));
+          }
+          if (rememberMe) {
+            localStorage.setItem('credentials', this.password);
           }
           return accepted;
         })
@@ -34,5 +39,7 @@ export class AuthenticationService {
   logout(): void {
     this.isAuthenticated = false;
     this.password = '';
+    localStorage.removeItem('credentials');
+    this.router.navigate(['/login']);
   }
 }

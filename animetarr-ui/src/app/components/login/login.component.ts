@@ -9,6 +9,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class LoginComponent {
   credentials = {
     password: '',
+    rememberMe: false,
   };
 
   constructor(private auth: AuthenticationService, private router: Router) {}
@@ -16,7 +17,7 @@ export class LoginComponent {
   login(): void {
     console.log(`Authenticating with: ${this.credentials.password}`);
     this.auth
-      .authenticate(this.credentials.password)
+      .authenticate(this.credentials.password, this.credentials.rememberMe)
       .subscribe((success: boolean) => {
         if (success) {
           this.router.navigate(['/dashboard']);
