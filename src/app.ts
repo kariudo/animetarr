@@ -20,13 +20,14 @@ app.use("/auth", auth);
 app.use("/series", isAuthorized, series);
 app.use("/schedule", isAuthorized, schedule);
 
-// Listen
+// Listen and log startup
 app.listen(port, () => {
+  const lineLength = process.stdout.columns || 40;
   const banner =
     "              _____     __  __" +
     "\n /\\ |\\ |||\\/||_  |  /\\ |__)|__)" +
     "\n/--\\| \\|||  ||__ | /--\\| \\ | \\  ";
-  const line = "\n" + "-".repeat(process.stdout.columns) + "\n";
+  const line = "\n" + "-".repeat(lineLength) + "\n";
   console.log(
     banner +
       line +
