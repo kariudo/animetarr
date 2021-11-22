@@ -22,5 +22,22 @@ app.use("/schedule", isAuthorized, schedule);
 
 // Listen
 app.listen(port, () => {
-  console.log(`Animetarr server is listening on port ${port}`);
+  const banner =
+    "              _____     __  __" +
+    "\n /\\ |\\ |||\\/||_  |  /\\ |__)|__)" +
+    "\n/--\\| \\|||  ||__ | /--\\| \\ | \\  ";
+  const line = "\n" + "-".repeat(process.stdout.columns) + "\n";
+  console.log(
+    banner +
+      line +
+      `Animetarr server is listening on port ${port}
+  with:
+    Password: ${process.env.PASSWORD}
+    Sonarr API Base URL : ${process.env.SONARR_API_BASE_URL}
+    Sonarr Quality Profile: ${process.env.SONARR_QUALITY_PROFILE_ID}
+    Sonarr Base Path: ${process.env.SONARR_BASE_PATH}
+    Sonarr API Key: ${process.env.SONARR_API_KEY}
+    TVDB API Key: ${process.env.TVDB_API_KEY}` +
+      line
+  );
 });

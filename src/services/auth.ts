@@ -5,7 +5,7 @@ export function isAuthorized(
   res: Response,
   next: NextFunction
 ): void {
-  const storedPassword = process.env.password || "";
+  const storedPassword = process.env.PASSWORD || "";
   const encodedPassword = Buffer.from(storedPassword, "binary").toString(
     "base64"
   );
