@@ -15,8 +15,9 @@ import { SelectedSeason } from '../../models';
   styleUrls: ['./toolbar.component.scss'],
 })
 export class ToolbarComponent implements AfterContentInit {
-  selectedYear: number = new Date().getFullYear();
+  selectedYear: number = this.getCurrentYear();
   selectedSeason: string = this.getCurrentSeason();
+  yearsToDisplay: number[] = this.getDisplayYears();
   version = 'Loading...';
 
   @Output() onSeasonSelected = new EventEmitter<SelectedSeason>();
@@ -33,6 +34,11 @@ export class ToolbarComponent implements AfterContentInit {
     animetarr.GetVersion().subscribe((version: string) => {
       this.version = `v${version}`;
     });
+  }
+
+  private getCurrentYear(): number {
+    const year = new Date().getFullYear();
+    return this.getCurrentSeason() == 'winter' ? year + 1 : year;
   }
 
   ngAfterContentInit(): void {
@@ -54,9 +60,17 @@ export class ToolbarComponent implements AfterContentInit {
     window.open('https://www.buymeacoffee.com/kariudo', '_blank');
   }
 
+  private getDisplayYears(): number[] {
+    const startingYear = 2018;
+    const yearsToDisplay = this.getCurrentYear() - startingYear + 1;
+    const range = [...Array(yearsToDisplay)].map((_, i) => startingYear + i);
+    return range;
+  }
+
   private getCurrentSeason(): string {
     const month = new Date().getMonth();
-    switch (month) {
+    console.log(month);
+    switch (month + 1) {
       case 11:
       case 12:
       case 1:

@@ -15,7 +15,6 @@ export class LoginComponent {
   constructor(private auth: AuthenticationService, private router: Router) {}
 
   login(): void {
-    console.log(`Authenticating with: ${this.credentials.password}`);
     this.auth
       .authenticate(this.credentials.password, this.credentials.rememberMe)
       .subscribe((success: boolean) => {

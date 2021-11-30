@@ -26,7 +26,6 @@ export class AuthenticationService {
           if (accepted) {
             this.isAuthenticated = true;
             this.password = btoa(password);
-            console.log('password is awesome, encoding as ', this.password);
           }
           if (rememberMe) {
             localStorage.setItem('credentials', this.password);

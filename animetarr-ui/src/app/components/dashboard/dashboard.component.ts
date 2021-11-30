@@ -36,7 +36,6 @@ export class DashboardComponent implements OnInit {
     const loadingSnackbarRef = this.snackBar.open('Loading data...', '');
 
     this.animetarr.GetSchedule(season).subscribe((seriesData) => {
-      console.log(seriesData);
       this.shows = seriesData;
       loadingSnackbarRef.dismiss();
       this.snackBar.open('Season loaded.', 'Dismiss', { duration: 3000 });
