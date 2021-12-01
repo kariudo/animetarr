@@ -27,6 +27,10 @@ $ docker run --name animetarr\
     -d kariudo/animetarr:latest
 ```
 
+### With Docker Compose
+
+You can also just make a copy of the `docker-compose.template.yml` as `docker-compose.yml` to your desired location, then after updating the file with your API keys etc. you can start the container with `docker compose up`.
+
 ## Usage (Development/shell)
 
 There are two components: the Server (nodejs server) and the UI (Angular web client). To run the development assets and/or debug:
