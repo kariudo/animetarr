@@ -10,6 +10,12 @@ export class TruncatePipe implements PipeTransform {
     completeWords = false,
     ellipsis = '...'
   ): string {
+    if (value === undefined) {
+      console.warn(
+        'Attempted truncate on undefined value. Returned empty string.'
+      );
+      return '';
+    }
     const shouldTruncate = value.length > limit;
     let absoluteLimit = Math.abs(limit);
 

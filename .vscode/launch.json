@@ -13,6 +13,10 @@
                 "run-script",
                 "start"
             ],
+            "outFiles": [
+                "${workspaceFolder}/dist/**/*.js",
+                "!**/node_modules/**"
+            ],
             "port": 9229,
             "skipFiles": [
                 "<node_internals>/**"

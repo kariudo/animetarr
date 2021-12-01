@@ -10,10 +10,11 @@
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
     "removeComments": true,
     "preserveConstEnums": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "package.json",
   ],
   "exclude": [
     "./animetarr-ui"

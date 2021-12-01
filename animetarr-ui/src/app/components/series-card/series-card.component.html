@@ -22,7 +22,7 @@
       </div>
       <div class="left-pill mat-elevation-z3" fxFlex="25%" fxFlex.lt-sm="100%">
         <mat-icon class="side-icon">tv</mat-icon>
-        <span class="date">{{series.airdate|date}}</span>
+        <span class="date">{{series.airdate?(series.airdate|date):'TBD'}}</span>
       </div>
       <div class="chips" fxFlex="100%">
         <mat-chip-list>
