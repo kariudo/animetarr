@@ -12,12 +12,20 @@
           </div>
         </div>
         <div class="description">
-          <span>{{series.description | truncate:400:true}}
+          <span *ngIf="!isMismatched">{{series.description | truncate:400:true}}
             <mat-icon class="more-description-icon" *ngIf="series.description.length > 400"
               (click)="showCompleteDescription(series)" [inline]=true
               matTooltip="{{series.description | truncate:-400:true}}">
               description</mat-icon>
           </span>
+          <div *ngIf="isMismatched">
+            <p>This series is marked as a mismatch.</p>
+            <ul>
+              <li>Original Title: <i>{{series.originalTitle}}</i></li>
+              <li>Matched Query: <i>{{series.matchedQuery}}</i></li>
+            </ul>
+            <p>Title names are reduced one "word" at a time until a match is hit.</p>
+          </div>
         </div>
       </div>
       <div class="left-pill mat-elevation-z3" fxFlex="25%" fxFlex.lt-sm="100%">
@@ -26,7 +34,7 @@
       </div>
       <div class="chips" fxFlex="100%">
         <mat-chip-list>
-          <mat-chip *ngFor="let tag of series.tags" color="accent" selected>{{tag}}</mat-chip>
+          <mat-chip class="tag-chip" *ngFor="let tag of series.tags" color="accent" selected>{{tag}}</mat-chip>
         </mat-chip-list>
       </div>
     </div>
@@ -36,7 +44,8 @@
       <button mat-icon-button (click)="showVideo(series)" matTooltip="View preview videos">
         <mat-icon>video_library</mat-icon>
       </button>
-      <button mat-icon-button (click)="markMismatch(series)" matTooltip="Mark mismatched">
+      <button mat-icon-button (click)="markMismatch(series)" matTooltip="Mark mismatched: {{series.originalTitle}}"
+        *ngIf="!isMismatched">
         <mat-icon>warning</mat-icon>
       </button>
     </span>

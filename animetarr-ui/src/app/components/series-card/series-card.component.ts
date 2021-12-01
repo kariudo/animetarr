@@ -17,7 +17,10 @@ export class SeriesCardComponent {
   existingSonarrSeriesIds!: number[];
 
   @Input()
-  mismatches!: number[];
+  mismatches!: string[];
+
+  @Input()
+  isMismatched = false;
 
   constructor(
     private youtube: YoutubeService,
@@ -57,7 +60,7 @@ export class SeriesCardComponent {
   }
 
   markMismatch(show: SeriesData): void {
-    this.mismatches.push(show.tvdbId);
+    this.mismatches.push(show.originalTitle);
     localStorage.setItem('mismatches', JSON.stringify(this.mismatches));
     this.snackBar.open('Marked as mismatch.', '', { duration: 3000 });
   }

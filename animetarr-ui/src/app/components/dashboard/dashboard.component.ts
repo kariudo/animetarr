@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
   isLoading = false;
   shows: SeriesData[] = []; // mockData;
   existingSonarrSeriesIds: number[] = [];
-  mismatches: number[] = JSON.parse(localStorage.getItem('mismatches') ?? '[]');
+  mismatches: string[] = JSON.parse(localStorage.getItem('mismatches') ?? '[]');
 
   constructor(
     private snackBar: MatSnackBar,
@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
   }
 
   isMismatched(show: SeriesData): boolean {
-    return this.mismatches.some((s) => s === show.tvdbId);
+    return this.mismatches.some((s) => s === show.originalTitle);
   }
 
   getSonarrSeriesIds(): void {

@@ -69,10 +69,9 @@ export class ToolbarComponent implements AfterContentInit {
 
   private getCurrentSeason(): string {
     const month = new Date().getMonth();
-    console.log(month);
-    switch (month + 1) {
+    switch (month) {
       case 11:
-      case 12:
+      case 0:
       case 1:
         return 'winter';
       case 2:
