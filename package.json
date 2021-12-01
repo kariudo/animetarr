@@ -26,8 +26,8 @@
     "preversion": "npm test",
     "version": "npm run build",
     "postversion": "run-script-os",
-    "postversion:nix": "git push && git push --tags && rimraf dist && docker build -t $npm_package_config_docker_ns/$npm_package_name:latest . && docker-publish",
-    "postversion:windows": "git push && git push --tags && rimraf dist && docker build -t %npm_package_config_docker_ns%/%npm_package_name%:latest . && docker-publish",
+    "postversion:nix": "rimraf dist && docker build -t $npm_package_config_docker_ns/$npm_package_name:latest . && git push && git push --tags && docker-publish",
+    "postversion:windows": "rimraf dist && docker build -t %npm_package_config_docker_ns%/%npm_package_name%:latest . && git push && git push --tags && docker-publish",
     "dev": "nodemon -e ts  --exec \"npm run start\""
   },
   "author": "Hunter Horsman",
