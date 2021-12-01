@@ -61,10 +61,10 @@ export class ToolbarComponent implements AfterContentInit {
   }
 
   private getDisplayYears(): number[] {
-    const startingYear = 2018;
+    const startingYear = 2000;
     const yearsToDisplay = this.getCurrentYear() - startingYear + 1;
     const range = [...Array(yearsToDisplay)].map((_, i) => startingYear + i);
-    return range;
+    return range.reverse(); // Return in reverse. Makes more sense in the UI.
   }
 
   private getCurrentSeason(): string {

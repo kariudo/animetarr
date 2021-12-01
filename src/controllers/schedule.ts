@@ -24,6 +24,9 @@ schedule.get("/:year/:season", async (req, res) => {
           year,
           season
         );
+        if (matched === null || matched === undefined) {
+          throw new Error("Match was undefined or null.");
+        }
         matched.tags = show.genres;
         if (matched.description == undefined) {
           if (show.description !== undefined) {
@@ -41,9 +44,15 @@ schedule.get("/:year/:season", async (req, res) => {
         return matched;
       } catch (err) {
         console.error(err);
+        console.warn(
+          "Failed to match (a translation alias probably needs to be added to the TVDB): ",
+          GetTitle(show),
+          season,
+          year
+        );
       }
     })
   );
 
-  return res.json(series);
+  return res.json(series.filter((x) => x !== undefined));
 });
