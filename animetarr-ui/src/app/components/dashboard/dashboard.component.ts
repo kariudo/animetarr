@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SelectedSeason } from 'src/app/models';
 import { AnimetarrService } from 'src/app/services/animetarr.service';
@@ -16,7 +16,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private snackBar: MatSnackBar,
-    private animetarr: AnimetarrService
+    private animetarr: AnimetarrService,
+    private cd: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -32,12 +33,17 @@ export class DashboardComponent implements OnInit {
   }
 
   loadSchedule(season: SelectedSeason): void {
+    // Set loading in UI
     this.isLoading = true;
+    this.cd.detectChanges();
     const loadingSnackbarRef = this.snackBar.open('Loading data...', '');
 
+    // Retreive season
     this.animetarr.GetSchedule(season).subscribe((seriesData) => {
       console.debug(seriesData);
       this.shows = seriesData;
+
+      // Complete loading
       loadingSnackbarRef.dismiss();
       this.snackBar.open('Season loaded.', 'Dismiss', { duration: 3000 });
       this.isLoading = false;
