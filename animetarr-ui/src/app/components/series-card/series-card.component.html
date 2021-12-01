@@ -48,9 +48,13 @@
         *ngIf="!isMismatched">
         <mat-icon>warning</mat-icon>
       </button>
+      <button mat-icon-button (click)="clearMismatch(series)" matTooltip="Mark matched: {{series.originalTitle}}"
+        *ngIf="isMismatched">
+        <mat-icon>check_circle</mat-icon>
+      </button>
     </span>
     <button mat-mini-fab color="accent" (click)="addToSonarr(series)"
-      [disabled]="series._isLoading || alreadyExists(series)">
+      [disabled]="series._isLoading || alreadyExists(series) || isMismatched">
       <mat-icon>{{alreadyExists(series)?"check_circle":"add"}}</mat-icon>
     </button>
   </mat-card-actions>

@@ -64,4 +64,16 @@ export class SeriesCardComponent {
     localStorage.setItem('mismatches', JSON.stringify(this.mismatches));
     this.snackBar.open('Marked as mismatch.', '', { duration: 3000 });
   }
+
+  clearMismatch(show: SeriesData): void {
+    const mismatch = this.mismatches.indexOf(show.originalTitle);
+    if (mismatch < 0) {
+      this.snackBar.open('Mismatch was not found by title.', '', {
+        duration: 3000,
+      });
+    }
+    this.mismatches.splice(mismatch, 1);
+    localStorage.setItem('mismatches', JSON.stringify(this.mismatches));
+    this.snackBar.open('Marked as matched.', '', { duration: 3000 });
+  }
 }
