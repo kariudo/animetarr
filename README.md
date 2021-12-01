@@ -2,7 +2,7 @@
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-blu.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![TypeScript](https://badgen.net/badge/icon/typescript?icon=typescript&label)](https://typescriptlang.org)
-[![Buymeacoffee](https://badgen.net/badge/icon/buymeacoffee?icon=buymeacoffee&label)]([https://https://www.buymeacoffee.com/](https://www.buymeacoffee.com/kariudo))
+[![Buymeacoffee](https://badgen.net/badge/icon/buymeacoffee?icon=buymeacoffee&label)](<[https://https://www.buymeacoffee.com/](https://www.buymeacoffee.com/kariudo)>)
 
 Pronoucned [ˈanimādər] like "Animator", you can query scheduled or historical anime releases and add them to your Sonarr instance.
 
@@ -23,6 +23,7 @@ $ docker run --name animetarr\
     -e SONARR_API_KEY="YOURSONARRAPIKEY" \
     -e SONARR_QUALITY_PROFILE_ID=3 \
     -e SONARR_BASE_PATH="/downloads/anime/"\
+    -e PASSWORD="aLittleS3curity"\
     -d kariudo/animetarr:latest
 ```
 
@@ -52,6 +53,14 @@ $ ng serve --watch
 After launching the client in your browser (most likely from `localhost:3000`), you should be shown the current airing season of programming. In the bottom right of each card you can press the `+` FAB to select series that should be added to your Sonarr instance. Shows that have already been added should have a disabled button and a checkmark shown in place of the button.
 
 The bottom left corner of each card also provides a button to mark(hide) shows that are mismatched (if it's something annoying), as well as a button to search YouTube for a any video previews to help decide if the series is worth your time.
+
+### About mismatches
+
+So when it comes to mismatches the issue is generally that there is a missing alias in the TVDB database. When the series is down in the mismatches you can view the original title of the series we tried to search for that was expected to be found, along with the query that actually hit your incorrect match, rather than the description. A lot of times this is because there is no english translation for a show, or the romaji name is the common accepted one instead, so it may need to be added to the TVDB series tranlation aliases. Once added there, matches tend to show up correctly after their caches update. So help the community, and help yourself and add missing data.
+
+## Descriptions on descriptions
+
+The general descriptions come from the TVDB as well, since that is the match data we will be binding into for Sonarr. It has priority. If there is no description on the TVDB even though a match was found (this happens on new/future season shows) we will try to fall back to any data we had from AniList.
 
 ## Where does the data come from?
 
