@@ -38,7 +38,9 @@ export class ToolbarComponent implements AfterContentInit {
 
   private getCurrentYear(): number {
     const year = new Date().getFullYear();
-    return this.getCurrentSeason() == 'winter' ? year + 1 : year;
+    const month = new Date().getMonth();
+    // If it is december then we consider "next winter" to be our current season/year target, otherwise its "this winter".
+    return month === 11 ? year + 1 : year;
   }
 
   ngAfterContentInit(): void {
