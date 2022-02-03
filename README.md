@@ -69,3 +69,7 @@ The general descriptions come from the TVDB as well, since that is the match dat
 ## Where does the data come from?
 
 The scheduling information by season is pulled from the AniList graphql API, and additional supporting details are pulled from the TVDB since we need those to leverage an exact match for Sonarr.
+
+![TheTVDB](https://www.thetvdb.com/images/attribution/logo2.png)
+
+If you have the time or find any issues, please help contribute to their database by correcting issues and filling in any missing information you find.
