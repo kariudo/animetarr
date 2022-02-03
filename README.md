@@ -1,10 +1,13 @@
 # Animetarr
 
+ > **Note regarding TheTVDB API Deprecation**: Currently TheTVDB data can not be collected by the agent due to their deprecation of the now legacy API, please follow [this issue](https://github.com/kariudo/animetarr/issues/1). Until it is resolved, this tool will not be able to function.
+<br/>
+
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-blu.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![TypeScript](https://badgen.net/badge/icon/typescript?icon=typescript&label)](https://typescriptlang.org)
 [![Buymeacoffee](https://badgen.net/badge/icon/buymeacoffee?icon=buymeacoffee&label)](<[https://https://www.buymeacoffee.com/](https://www.buymeacoffee.com/kariudo)>)
 
-Pronoucned [ˈanimādər] like "Animator", you can query scheduled or historical anime releases and add them to your Sonarr instance.
+Pronoucned [ˈanimādər] like "Animator", you can query scheduled or historical anime releases and add them to your Sonarr instance. This project was created for my own needs to assure correct matched and mapping of media flowing into my Plex instance from Sonarr by prematching new series against TheTVDB database.
 
 ## Screenshot
 
@@ -12,7 +15,7 @@ Pronoucned [ˈanimādər] like "Animator", you can query scheduled or historical
 
 ## Usage (Docker)
 
-Animetarr is available as a docker image and published to Docker Hub: `kariudo/animetarr:latest`, you will need to provide the required environment variables though.
+Animetarr is available as a docker image and published to Docker Hub: `kariudo/animetarr:latest`, you will need to provide the required environment variables though. 
 
 ```shell
 $ docker run --name animetarr\
