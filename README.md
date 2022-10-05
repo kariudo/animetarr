@@ -1,8 +1,4 @@
 # Animetarr
-
-> **Note regarding TheTVDB API Deprecation**: Currently TheTVDB data can not be collected by the agent due to their deprecation of the now legacy API, please follow [this issue](https://github.com/kariudo/animetarr/issues/1). Until it is resolved, this tool will not be able to function.
-> <br/>
-
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-blu.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![TypeScript](https://badgen.net/badge/icon/typescript?icon=typescript&label)](https://typescriptlang.org)
 [![Buymeacoffee](https://badgen.net/badge/icon/buymeacoffee?icon=buymeacoffee&label)](<[https://https://www.buymeacoffee.com/](https://www.buymeacoffee.com/kariudo)>)
