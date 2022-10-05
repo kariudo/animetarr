@@ -44,6 +44,8 @@ class TVDB {
   }
 
   async searchSeries(query: string, year?: number): Promise<TVDBSeries> {
+    // eslint-disable-next-line prefer-rest-params
+    console.debug(`Search: "${query}"${year ? " (" + year + ")" : ""}`);
     // TODO: Series should be cached
     if (!this.isLoggedIn) {
       await this.login();
@@ -71,15 +73,18 @@ class TVDB {
       throw new Error("No results for TVDB search.");
     }
     const d = json.data[0];
+    // console.debug("Result:", d);
     // TODO: the images are all the same currently.
     return {
       aliases: d.aliases,
       banner: d.image_url,
       firstAired: d.first_air_time,
-      id: d.tvdb_id,
+      id: +d.tvdb_id,
       image: d.image_url,
       network: d.network,
-      overview: d.overviews["eng"],
+      overview:
+        d.overviews?.["eng"] ??
+        "No overview available. [Consider contributing to the TVDB.]",
       poster: d.image_url,
       seriesName: d.translations["eng"],
       slug: d.slug,
@@ -124,13 +129,44 @@ export async function matchSeriesTitle(
       originalTitle: originalTitle ?? title,
       status: series.status,
     });
+    // Correct sesason if not from this year or not provided by direct match.
+    const airMonth = seriesData.airdate?.getMonth();
+    const airYear = seriesData.airdate?.getFullYear();
+    if (seriesData.queryYear !== airYear && typeof airYear === "number") {
+      switch (airMonth) {
+        case 11:
+        case 0:
+        case 1:
+          seriesData.season = Season.winter;
+          break;
+        case 2:
+        case 3:
+        case 4:
+          seriesData.season = Season.spring;
+          break;
+        case 5:
+        case 6:
+        case 7:
+          seriesData.season = Season.summer;
+          break;
+        default:
+          seriesData.season = Season.fall;
+          break;
+      }
+      // Backfill the year for rendering.
+      seriesData.queryYear = airYear;
+    }
+
+    console.debug(
+      `Found: ${seriesData.title} (${seriesData.season} ${seriesData.queryYear})`
+    );
     return seriesData;
   } catch (err) {
-    // eslint-disable-next-line prefer-rest-params
-    console.debug("Error when searching for:", arguments);
     try {
       return retryWithShorterName(title, originalTitle, year, season);
     } catch (retryErr) {
+      // eslint-disable-next-line prefer-rest-params
+      console.debug("Error when searching for:", arguments);
       throw new Error("Exhausted shorter name retry attempts with no result.");
     }
   }
@@ -166,8 +202,16 @@ async function retryWithShorterName(
 /**
  * Removes the last word from a string.
  *
+ * Also removes trailing ':', and the words "season", "cour",  or "part".
+ *
  * @returns Shorter string.
  */
 function removeLastWord(str: string): string {
-  return str.substring(0, str.lastIndexOf(" ")).trim();
+  return str
+    .substring(0, str.lastIndexOf(" "))
+    .trim()
+    .replace(/(season|cour|part)\s(\d+)\s*[:].*?\s*$/i, "") // Remove everything that seems to be season specific.
+    .replace(/(season|cour|part)\s*(\d+)?\s*[:]?\s*$/i, "") // Remove any other trailing season bits.
+    .replace(/[:-]$/, "") // Remove trailing special title characters.
+    .trim();
 }

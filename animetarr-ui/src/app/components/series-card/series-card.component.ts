@@ -44,8 +44,15 @@ export class SeriesCardComponent {
   showCompleteDescription(show: SeriesData): void {
     window.alert(show.description);
   }
+
+  /**
+   * Add series to Sonarr.
+   *
+   * @param show Series to add.
+   */
   addToSonarr(show: SeriesData): void {
     show._isLoading = true;
+    console.debug('Adding', show);
     this.snackBar.open(`Adding "${show.title}" to Sonarr...`, '', {
       duration: 2000,
     });
