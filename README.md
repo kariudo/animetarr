@@ -1,7 +1,7 @@
 # Animetarr
 
- > **Note regarding TheTVDB API Deprecation**: Currently TheTVDB data can not be collected by the agent due to their deprecation of the now legacy API, please follow [this issue](https://github.com/kariudo/animetarr/issues/1). Until it is resolved, this tool will not be able to function.
-<br/>
+> **Note regarding TheTVDB API Deprecation**: Currently TheTVDB data can not be collected by the agent due to their deprecation of the now legacy API, please follow [this issue](https://github.com/kariudo/animetarr/issues/1). Until it is resolved, this tool will not be able to function.
+> <br/>
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-blu.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![TypeScript](https://badgen.net/badge/icon/typescript?icon=typescript&label)](https://typescriptlang.org)
@@ -15,7 +15,7 @@ Pronoucned [ˈanimādər] like "Animator", you can query scheduled or historical
 
 ## Usage (Docker)
 
-Animetarr is available as a docker image and published to Docker Hub: `kariudo/animetarr:latest`, you will need to provide the required environment variables though. 
+Animetarr is available as a docker image and published to Docker Hub: `kariudo/animetarr:latest`, you will need to provide the required environment variables though.
 
 ```shell
 $ docker run --name animetarr\
@@ -68,6 +68,11 @@ So when it comes to mismatches the issue is generally that there is a missing al
 ## Descriptions on descriptions
 
 The general descriptions come from the TVDB as well, since that is the match data we will be binding into for Sonarr. It has priority. If there is no description on the TVDB even though a match was found (this happens on new/future season shows) we will try to fall back to any data we had from AniList.
+
+## Changes to TVDB API
+
+Due to some changes in the TVDB API and their policy, you will need to provide your own V4 key now. This will require contacting them if you do
+not have a subscription paid.
 
 ## Where does the data come from?
 
