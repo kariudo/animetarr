@@ -42,8 +42,8 @@ schedule.get("/:year/:season", async (req, res) => {
         }
         // matched.print();
         return matched;
-      } catch (err) {
-        console.error(err);
+      } catch (err: any) {
+        console.error(err.message);
         console.warn(
           "Failed to match (a translation alias probably needs to be added to the TVDB): ",
           GetTitle(show),
