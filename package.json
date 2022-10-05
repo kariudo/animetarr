@@ -4,7 +4,7 @@
     "type": "git",
     "url": "https://github.com/kariudo/animetarr"
   },
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Pronounced 'Animator', this service provides an interface to review and add anime to Sonarr and Radarr based on release schedule.",
   "main": "dist/app.js",
   "config": {
