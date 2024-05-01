@@ -18,7 +18,7 @@ $ docker run --name animetarr\
     -p 3000:3000/tcp \
     -e API_PORT=3000 \
     -e TVDB_API_KEY="YOURTVDBIDKEY" \
-    -e SONARR_API_BASE_URL="https://sonarr.home.host.local/api" \
+    -e SONARR_API_BASE_URL="https://sonarr.home.host.local/api/v3" \
     -e SONARR_API_KEY="YOURSONARRAPIKEY" \
     -e SONARR_QUALITY_PROFILE_ID=3 \
     -e SONARR_BASE_PATH="/downloads/anime/"\
