@@ -1,4 +1,5 @@
 # Animetarr
+
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-blu.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![TypeScript](https://badgen.net/badge/icon/typescript?icon=typescript&label)](https://typescriptlang.org)
 [![Buymeacoffee](https://badgen.net/badge/icon/buymeacoffee?icon=buymeacoffee&label)](<[https://https://www.buymeacoffee.com/](https://www.buymeacoffee.com/kariudo)>)
@@ -37,6 +38,8 @@ There are two components: the Server (nodejs server) and the UI (Angular web cli
 ### Start the server
 
 You will need to make your `.env` file to reflect your settings. You can start by copying the `.env.example` file to `.env` and entering your approparite values.
+
+> Note: the server will only start if the UI has been built with angular already (see below).
 
 ```shell
 $ npm start
