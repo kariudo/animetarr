@@ -29,7 +29,7 @@ export const GetSeasonMedia = async function (
       method: "POST",
     });
     const json: any = await res.json();
-    shows.push(json.data.Page.media);
+    shows.push(...json.data.Page.media);
     hasNextPage = json.data.Page.pageInfo.hasNextPage;
   } while (hasNextPage);
 

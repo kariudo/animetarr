@@ -14,5 +14,6 @@ export interface SeriesData {
   posterUrl: string;
   aliases: string[];
   tags?: string[];
+  data?: any;
   _isLoading?: boolean; // used by application to mark the value in process of action.
 }

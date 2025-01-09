@@ -26,7 +26,8 @@ schedule.get("/:year/:season", async (req: Request<{ year: string; season: strin
           GetTitle(show),
           undefined,
           year,
-          season
+          season,
+          show
         );
         if (matched === null || matched === undefined) {
           throw new Error("Match was undefined or null.");

@@ -43,6 +43,26 @@ class TVDB {
     this.token = json.data.token;
   }
 
+  // async getSeriesById(id: number): Promise<TVDBSeries> {
+  //   if (!this.isLoggedIn) {
+  //     await this.login();
+  //   }
+  //   const res = await fetch(`https://api4.thetvdb.com/v4/series/${id}`, {
+  //     headers: {
+  //       accept: "application/json",
+  //       Authorization: `Bearer ${this.token}`,
+  //     },
+  //   });
+  //   if (res.status !== 200) {
+  //     throw new Error("Search failed.");
+  //   }
+  //   const json: any = await res.json();
+  //   if (json.status !== "success") {
+  //     throw new Error(`Search failed with status '${json.status}'.`);
+  //   }
+  //   return json.data;
+  // }
+
   async searchSeries(query: string, year?: number): Promise<TVDBSeries> {
     // eslint-disable-next-line prefer-rest-params
     console.debug(`Search: "${query}"${year ? " (" + year + ")" : ""}`);
@@ -111,7 +131,8 @@ export async function matchSeriesTitle(
   title: string,
   originalTitle?: string,
   year?: number,
-  season?: Season
+  season?: Season,
+  data: object = {}
 ): Promise<SeriesData> {
   try {
     const series = await tvdb.searchSeries(title, year);
@@ -128,6 +149,7 @@ export async function matchSeriesTitle(
       matchedQuery: title,
       originalTitle: originalTitle ?? title,
       status: series.status,
+      data: data,
     });
     // Correct sesason if not from this year or not provided by direct match.
     const airMonth = seriesData.airdate?.getMonth();
@@ -163,7 +185,7 @@ export async function matchSeriesTitle(
     return seriesData;
   } catch (err) {
     try {
-      return retryWithShorterName(title, originalTitle, year, season);
+      return retryWithShorterName(title, originalTitle, year, season, data);
     } catch (retryErr) {
       // eslint-disable-next-line prefer-rest-params
       console.debug("Error when searching for:", arguments);
@@ -183,7 +205,8 @@ async function retryWithShorterName(
   title: string,
   originalTitle?: string,
   year?: number,
-  season?: Season
+  season?: Season,
+  data?: object
 ): Promise<SeriesData> {
   const shortenedTitle =
     typeof year === undefined ? title : removeLastWord(title);
@@ -192,7 +215,8 @@ async function retryWithShorterName(
       shortenedTitle,
       originalTitle ?? title,
       undefined, // Do not include year in truncated searches, since it is most likely continuing.
-      season
+      season,
+      data
     );
   } else {
     throw new Error("Name cannot be shortened");

@@ -14,6 +14,7 @@ export class SeriesData {
   posterUrl = "";
   aliases: string[] = [];
   tags: string[] = [];
+  data: object = {}
 
   constructor(params: Partial<SeriesData>) {
     Object.assign(this, params);

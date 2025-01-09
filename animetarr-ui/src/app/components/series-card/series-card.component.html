@@ -34,6 +34,7 @@
       </div>
       <div class="chips" fxFlex="100%">
         <mat-chip-list>
+          <mat-chip>{{series.data.format}}</mat-chip>
           <mat-chip class="tag-chip" *ngFor="let tag of series.tags" color="accent" selected>{{tag}}</mat-chip>
         </mat-chip-list>
       </div>
