@@ -14,17 +14,24 @@ export const GetSeasonMedia = async function (
     page: 1,
   };
 
-  const res = await fetch("https://graphql.anilist.co/", {
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      query: anichartQuery,
-      variables: queryVariables,
-    }),
-    method: "POST",
-  });
-  const json = await res.json();
-  const shows = json.data.Page.media;
+  const shows: AnichartMedia[] = [];
+  // Continue fetch until there are no more pages.
+  let hasNextPage = true;
+  do {
+    const res = await fetch("https://graphql.anilist.co/", {
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        query: anichartQuery,
+        variables: queryVariables,
+      }),
+      method: "POST",
+    });
+    const json = await res.json();
+    shows.push(json.data.Page.media);
+    hasNextPage = json.data.Page.pageInfo.hasNextPage;
+  } while (hasNextPage);
+
   return shows;
 };

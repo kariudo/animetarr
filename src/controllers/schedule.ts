@@ -14,7 +14,10 @@ schedule.get("/:year/:season", async (req, res) => {
     return res.status(400);
   }
 
-  const shows = await GetSeasonMedia(year, season, Format.tv);
+  // Get both TV, and ONA
+  const tv = await GetSeasonMedia(year, season, Format.TV);
+  const ona = await GetSeasonMedia(year, season, Format.ONA);
+  const shows = [...tv, ...ona];
   const series = await Promise.all(
     shows.map(async (show: AnichartMedia) => {
       try {
