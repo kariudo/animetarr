@@ -36,7 +36,7 @@ class TVDB {
     if (res.status === 401) {
       throw new Error("Invalid API Key");
     }
-    const json = await res.json();
+    const json: any = await res.json();
     if (json.status !== "success") {
       throw new Error(json.status);
     }
@@ -65,7 +65,7 @@ class TVDB {
     if (res.status !== 200) {
       throw new Error("Search failed.");
     }
-    const json = await res.json();
+    const json: any = await res.json();
     if (json.status !== "success") {
       throw new Error(`Search failed with status '${json.status}'.`);
     }

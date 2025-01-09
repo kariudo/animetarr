@@ -5,10 +5,10 @@ import { GetAllSeries, GetAllSeriesId, PostSeries } from "../services/sonarr";
 export const series = express.Router();
 
 // GET /series/ids
-series.get("/ids", async (req, res) => res.json(await GetAllSeriesId()));
+series.get("/ids", async (req, res) => { res.json(await GetAllSeriesId()) });
 
 // GET /series
-series.get("/", async (req, res) => res.json(await GetAllSeries()));
+series.get("/", async (req, res) => { res.json(await GetAllSeries()) });
 
 // POST /series
 series.post("/", async (req, res) => {

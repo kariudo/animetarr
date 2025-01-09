@@ -1,17 +1,18 @@
-import express from "express";
+import express, { Request, Response, Router } from "express";
 
 import { Season, Format, AnichartMedia, GetTitle } from "../models";
 import { GetSeasonMedia } from "../services/anichart";
 import { matchSeriesTitle as matchSeriesByTitle } from "../services/tvdb";
 
-export const schedule = express.Router();
+export const schedule: Router = express.Router();
 
-schedule.get("/:year/:season", async (req, res) => {
+schedule.get("/:year/:season", async (req: Request<{ year: string; season: string }>, res: Response): Promise<void> => {
   const year = Number(req.params.year);
   const season = req.params.season.toUpperCase() as Season;
 
   if (!year || !season) {
-    return res.status(400);
+    res.status(400);
+    return;
   }
 
   // Get both TV, and ONA
@@ -57,5 +58,5 @@ schedule.get("/:year/:season", async (req, res) => {
     })
   );
 
-  return res.json(series.filter((x) => x !== undefined));
+  res.json(series.filter((x) => x !== undefined));
 });

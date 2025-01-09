@@ -38,7 +38,7 @@ export async function GetAllSeries(): Promise<SonarrSeries[]> {
   const data = await fetch(baseUrl + endpoint, {
     headers: headers,
   });
-  const allSeries = await data.json();
+  const allSeries = await data.json() as SonarrSeries[];
   return allSeries;
 }
 
@@ -54,7 +54,7 @@ export async function PostSeries(tvdbId: number): Promise<SonarrSeries> {
     `${baseUrl}/series/lookup?term=tvdb:${tvdbId}`,
     { headers: headers }
   );
-  let series: SonarrSeries = await tvdbSeriesResponse.json();
+  let series: SonarrSeries = await tvdbSeriesResponse.json() as SonarrSeries;
   // If the series was returned as an array, we only want the first result. [This was introduced in Sonarr 4+]
   if (Array.isArray(series)) {
     series = series[0];
