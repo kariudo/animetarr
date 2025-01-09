@@ -1,4 +1,4 @@
-FROM trion/ng-cli:14.2.3 as build
+FROM trion/ng-cli:14.2.3 AS build
 
 EXPOSE 3000
 
@@ -19,7 +19,7 @@ WORKDIR /build/animetarr-ui
 RUN npm ci
 RUN npm run build
 
-FROM node:16.13-alpine
+FROM node:20.12-alpine
 
 WORKDIR /app
 COPY --from=build /build/dist .
