@@ -119,3 +119,8 @@ dist
 
 # Temp build files
 build
+
+.env*
+.flaskenv*
+!.env.project
+!.env.vault
