@@ -6,7 +6,8 @@
   },
   "version": "2.1.0",
   "description": "Pronounced 'Animator', this service provides an interface to review and add anime to Sonarr and Radarr based on release schedule.",
-  "main": "dist/app.js",
+  "type": "module",
+  "exports": "./dist/app.js",
   "config": {
     "docker": {
       "ns": "kariudo"
@@ -33,6 +34,7 @@
   "author": "Hunter Horsman",
   "license": "ISC",
   "dependencies": {
+    "bottleneck": "^2.19.5",
     "dotenv-safe": "^9.1.0",
     "express": "^4.21.2",
     "node-fetch": "^3.3.2",

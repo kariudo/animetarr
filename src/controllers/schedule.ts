@@ -1,6 +1,6 @@
-import express, { Request, Response, Router } from "express";
+import express, { type Request, type Response, Router } from "express";
 
-import { Season, Format, AnichartMedia, GetTitle } from "../models";
+import { Season, Format, type AnichartMedia, GetTitle } from "../models";
 import { GetSeasonMedia } from "../services/anichart";
 import { matchSeriesTitle as matchSeriesByTitle } from "../services/tvdb";
 

@@ -1,5 +1,5 @@
 import { SeriesData } from "../models/SeriesData";
-import { TVDBSeries } from "../models/TVDBSeries";
+import type { TVDBSeries } from "../models/TVDBSeries";
 import { Season } from "../models/Season.enum";
 import fetch from "node-fetch";
 

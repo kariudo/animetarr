@@ -17,7 +17,7 @@
   },
   "include": [
     "src/**/*",
-    "package.json",
+    "package.json"
   ],
   "exclude": [
     "./animetarr-ui"

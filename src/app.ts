@@ -31,8 +31,8 @@ app.listen(port, () => {
   const line = "\n" + "-".repeat(lineLength) + "\n";
   console.log(
     banner +
-      line +
-      `Animetarr server is listening on port ${port}
+    line +
+    `Animetarr server is listening at http://localhost:${port}
   with:
     Password: ${process.env.PASSWORD}
     Sonarr API Base URL : ${process.env.SONARR_API_BASE_URL}
@@ -40,6 +40,6 @@ app.listen(port, () => {
     Sonarr Base Path: ${process.env.SONARR_BASE_PATH}
     Sonarr API Key: ${process.env.SONARR_API_KEY}
     TVDB API Key: ${process.env.TVDB_API_KEY}` +
-      line
+    line
   );
 });
