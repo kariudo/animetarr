@@ -10,7 +10,9 @@
     </div>
   </div>
   <section *ngIf="!isLoading">
-    <mat-toolbar *ngIf="mismatchedShows.length > 0" color="warning">Mismatched</mat-toolbar>
+    <mat-toolbar *ngIf="mismatchedShows.length > 0" color="warning">
+      <mat-icon>warning</mat-icon>
+      Mismatched</mat-toolbar>
     <div *ngIf="mismatchedShows.length > 0" class="content">
       <div fxLayout="row wrap" fxLayoutGap="16px grid">
         <div fxFlex="33%" fxFlex.lt-xl="50%" fxFlex.lt-lg="100%" *ngFor="let show of mismatchedShows">
