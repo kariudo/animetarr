@@ -62,6 +62,19 @@ export class ToolbarComponent implements AfterContentInit {
     window.open('https://www.buymeacoffee.com/kariudo', '_blank');
   }
 
+  get isFutureSeason(): boolean {
+    const currentYear = this.getCurrentYear();
+    const currentSeason = this.getCurrentSeason();
+    const seasons = ['winter', 'spring', 'summer', 'fall'];
+    const selectedSeasonIndex = seasons.indexOf(this.selectedSeason);
+    const currentSeasonIndex = seasons.indexOf(currentSeason);
+    return (
+      this.selectedYear > currentYear ||
+      (this.selectedYear === currentYear &&
+        selectedSeasonIndex > currentSeasonIndex + 1)
+    );
+  }
+
   private getDisplayYears(): number[] {
     const startingYear = 2000;
     const yearsToDisplay = this.getCurrentYear() - startingYear + 1;
