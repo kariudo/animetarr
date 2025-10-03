@@ -93,8 +93,6 @@ class TVDB {
       throw new Error("No results for TVDB search.");
     }
     const d = json.data[0];
-    // console.debug("Result:", d);
-    // TODO: the images are all the same currently.
     return {
       aliases: d.aliases,
       banner: d.image_url,
