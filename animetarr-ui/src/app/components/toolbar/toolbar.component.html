@@ -16,5 +16,8 @@
       <option [value]="season" *ngFor="let season of ['winter', 'spring', 'summer','fall']">{{ season | titlecase }}
       </option>
     </select>
+    <!-- If the selected season is more than one ahead, show a warning that data may be missing or inaccurate. -->
+    <mat-icon *ngIf="isFutureSeason"
+      matTooltip="Data for future seasons may be missing or inaccurate.">warning</mat-icon>
   </form>
 </mat-toolbar>
