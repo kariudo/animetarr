@@ -1,10 +1,16 @@
-# Animetarr
+<div align="center">
+
+# 😼Animetarr
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-blu.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
 [![TypeScript](https://badgen.net/badge/icon/typescript?icon=typescript&label)](https://typescriptlang.org)
 [![Buymeacoffee](https://badgen.net/badge/icon/buymeacoffee?icon=buymeacoffee&label)](<[https://https://www.buymeacoffee.com/](https://www.buymeacoffee.com/kariudo)>)
 
+---
+
 Pronoucned [ˈanimādər] like "Animator", you can query scheduled or historical anime releases and add them to your Sonarr instance. This project was created for my own needs to assure correct matched and mapping of media flowing into my Plex instance from Sonarr by prematching new series against TheTVDB database.
+
+</div>
 
 ## Screenshot
 
@@ -77,6 +83,6 @@ not have a subscription paid.
 
 The scheduling information by season is pulled from the AniList graphql API, and additional supporting details are pulled from the TVDB since we need those to leverage an exact match for Sonarr.
 
-![TheTVDB](https://www.thetvdb.com/images/attribution/logo2.png)
+<img src="https://www.thetvdb.com/images/attribution/logo2.png" height="100px" alt="TheTVDB">
 
 If you have the time or find any issues, please help contribute to their database by correcting issues and [filling in any missing information](https://www.thetvdb.com/points) you find.
